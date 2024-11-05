@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Registration Form</title>
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+        crossorigin="anonymous">
+    <style>
+        body {
+            background: linear-gradient(135deg, #6dd5ed, #2193b0);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            margin-bottom: 20px;
+        }
+        .form-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            animation: fadeIn 1s ease-in-out;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            font-weight: bold;
+        }
+        .form-label {
+            font-weight: bold;
+            color: #555;
+        }
+        .btn-primary {
+            background-color: #2193b0;
+            border-color: #2193b0;
+            font-weight: bold;
+        }
+        .btn-primary:hover {
+            background-color: #6dd5ed;
+            border-color: #6dd5ed;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <!-- Brand -->
+        <a class="navbar-brand" href="#">Student Management System</a>
+        <!-- Toggler/collapsibe Button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/students}">Student Management</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="form-container">
+        <h2>Update Student Form</h2>
+        <form th:action="@{/students/edit/{id}(id=${student.id})}" th:object="${student}" method="post">
+            <div class="mb-3">
+                <label for="firstName" class="form-label">Student First Name</label>
+                <input type="text" name="firstName" id="firstName" class="form-control" placeholder="Enter First Name"   th:field="*{firstName}"  required   />
+            </div>
+            <div class="mb-3">
+                <label for="lastName" class="form-label">Student Last Name</label>
+                <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Enter Last Name" th:field="*{lastName}" required/>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Student Email Id</label>
+                <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email Id" th:field="*{email}" required/>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXlJqRFaK2S6eTkIPdI7oMjW7M76j2I6i4Csm/z7v1cD/wlgyrx0wPfK5FkT" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVkiHy9Eqwr/Dy8ll7PklXlsp0yrFxFffdxpBB7pt7SA9h5I1TV/tTsupA5mrY65" crossorigin="anonymous"></script>
+
+</body>
+</html>

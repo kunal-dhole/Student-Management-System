@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Student Management System</title>
+<!-- Bootstrap CSS CDN -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<!-- Brand -->
+		<a class="navbar-brand" href="#">Student Management System</a>
+		<!-- Toggler/collapsible Button -->
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+			data-bs-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<!-- Navbar links -->
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a th:href="@{/students}" class="nav-link">Student Management</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="container">
+		<div class="text-center">
+			<h2>Student List</h2>
+		</div>
+		<div class="row">
+			<div class="col-lg-3">
+				<a th:href="@{/students/new}" class="btn btn-primary btn-sm mb-3">Add Student</a>
+			</div>
+		</div>
+
+		<table class="table table-striped table-bordered">
+			<thead>
+				<tr>
+				
+					<th>FIRST NAME</th>
+					<th>LAST NAME</th>
+					<th>EMAIL</th>
+					<th>ACTION</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- student is a variable that can be anything and students is the key given in the controller -->
+				<!-- th:each is similar to a for-each loop -->
+				<tr th:each="student : ${students}">
+			
+					<td th:text="${student.firstName}"></td>
+					<td th:text="${student.lastName}"></td>
+					<td th:text="${student.email}"></td>
+					<td><a th:href="@{/students/edit/{id}(id=${student.id})}" class="btn btn-primary">Update</a></td>
+					<td><a th:href="@{students/{id} (id=${student.id})}" class="btn btn-danger">Delete</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<!-- Bootstrap JS and dependencies -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-pcO6eWShL5VwKnH8kXtGz5g5yAtGye6DZjI5L/ohXxiA9fTfm5cdZm6xG/XzJ0fw5"
+		crossorigin="anonymous"></script>
+</body>
+</html>
